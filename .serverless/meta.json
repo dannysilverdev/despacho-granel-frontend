@@ -17,7 +17,7 @@
               "region": "us-east-1",
               "stage": "local",
               "environment": {
-                "API_URL": "http://localhost:3000/dev",
+                "API_URL": "https://h7scr7rpeg.execute-api.us-east-1.amazonaws.com/dev",
                 "NODE_ENV": "local"
               },
               "versionFunctions": true
@@ -151,9 +151,7 @@
           "config": {
             "type": "opt"
           },
-          "options": {
-            "confirm": false
-          },
+          "options": {},
           "logger": {
             "namespace": "s:core:resolver:opt",
             "prefix": null,
@@ -175,7 +173,7 @@
               "region": "us-east-1",
               "stage": "local",
               "environment": {
-                "API_URL": "http://localhost:3000/dev",
+                "API_URL": "https://h7scr7rpeg.execute-api.us-east-1.amazonaws.com/dev",
                 "NODE_ENV": "local"
               },
               "versionFunctions": true
@@ -309,9 +307,7 @@
           "config": {
             "type": "env"
           },
-          "options": {
-            "confirm": false
-          },
+          "options": {},
           "stage": "local",
           "dashboard": null,
           "logger": {
@@ -334,7 +330,7 @@
               "region": "us-east-1",
               "stage": "local",
               "environment": {
-                "API_URL": "http://localhost:3000/dev",
+                "API_URL": "https://h7scr7rpeg.execute-api.us-east-1.amazonaws.com/dev",
                 "NODE_ENV": "local"
               },
               "versionFunctions": true
@@ -468,9 +464,7 @@
           "config": {
             "type": "self"
           },
-          "options": {
-            "confirm": false
-          },
+          "options": {},
           "stage": "local",
           "dashboard": null,
           "logger": {
@@ -494,7 +488,7 @@
         "region": "us-east-1",
         "stage": "local",
         "environment": {
-          "API_URL": "http://localhost:3000/dev",
+          "API_URL": "https://h7scr7rpeg.execute-api.us-east-1.amazonaws.com/dev",
           "NODE_ENV": "local"
         },
         "versionFunctions": true
@@ -629,12 +623,10 @@
       "client",
       "deploy"
     ],
-    "options": {
-      "confirm": false
-    },
+    "options": {},
     "error": null,
     "params": {},
-    "machineId": "a0e68928fefc0c89abd098a134c3988e",
+    "machineId": "899eb33c7ec43cfbafe193064d50010a",
     "stage": "local",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",

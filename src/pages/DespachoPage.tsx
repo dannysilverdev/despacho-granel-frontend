@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     TextField,
     Button,
@@ -12,15 +12,54 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CardSelector from '../components/CardSelector';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const DespachoPage: React.FC = () => {
+    const [username, setUsername] = useState('');
     const [cliente, setCliente] = useState('');
     const [producto, setProducto] = useState('');
     const [silo, setSilo] = useState('');
     const [ordenCompra, setOrdenCompra] = useState('');
     const [carga, setCarga] = useState('');
+    const navigate = useNavigate();
 
-    const username = "usuarioEjemplo"; // Obtener este valor desde la sesión o contexto de autenticación
+    useEffect(() => {
+        // Obtener el username del token almacenado en localStorage
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            try {
+                const payloadBase64 = token.split('.')[1];
+                if (payloadBase64) {
+                    const decodedPayload = JSON.parse(atob(payloadBase64));
+                    console.log('Payload decodificado:', decodedPayload);
+
+                    // Intentar encontrar el campo userId, ya que parece ser el que contiene el nombre del usuario
+                    const potentialUsername = decodedPayload.userId;
+
+                    if (potentialUsername) {
+                        setUsername(potentialUsername);
+                    } else {
+                        console.warn('El token no contiene un campo de usuario válido');
+                    }
+                } else {
+                    console.warn('Token malformado: no tiene payload');
+                }
+            } catch (error) {
+                console.error('Error al decodificar el token:', error);
+            }
+        } else {
+            console.warn('No se encontró ningún token.');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!username) {
+            console.log('Username aún no está definido.');
+        } else {
+            console.log('Username obtenido:', username);
+        }
+    }, [username]);
 
     const handleClienteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCliente(event.target.value);
@@ -44,6 +83,12 @@ const DespachoPage: React.FC = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        // Verificar si el username está vacío antes de enviar
+        if (!username) {
+            alert('El username no se ha establecido correctamente. Por favor, inténtalo de nuevo.');
+            return;
+        }
 
         // Obtener la fecha y hora actuales
         const fechaDespacho = dayjs().format('YYYY-MM-DD HH:mm:ss');

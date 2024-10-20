@@ -11,6 +11,10 @@ const Login = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL; // Accediendo a la variable de entorno
 
+    for (const key in import.meta.env) {
+        console.log(`${key}: ${import.meta.env[key]}`);
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 

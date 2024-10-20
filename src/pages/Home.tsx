@@ -8,6 +8,9 @@ const Home = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        // Log the current environment mode
+        console.log('Current environment:', import.meta.env.MODE)
+
         const fetchData = async () => {
             const token = localStorage.getItem('token')
 
@@ -16,7 +19,9 @@ const Home = () => {
                 return
             }
 
-            const response = await fetch('https://h7scr7rpeg.execute-api.us-east-1.amazonaws.com/dev/home', {
+            const apiUrl = import.meta.env.VITE_API_URL
+
+            const response = await fetch(`${apiUrl}/home`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
 
